@@ -1,0 +1,11 @@
+{
+  "name": "DatePackage",
+  "label": "DatePackage",
+  "description": "Sample package to demo dictionary return",
+  "group": "",
+  "artifactName": "",
+  "packageVersion": "",
+  "codeVersion": "",
+  "author": "",
+  "commands": []
+}
