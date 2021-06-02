@@ -35,7 +35,7 @@ import com.automationanywhere.commandsdk.annotations.Idx;
 import com.automationanywhere.commandsdk.annotations.Pkg;
 
 
- @BotCommand
+ //@BotCommand
  @CommandPkg(label = "DateStart", name = "startSession", description = "Start new session",
  icon = "pkg.svg", node_label = "start session {{sessionName}}|")
 

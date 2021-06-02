@@ -1,6 +1,6 @@
 {
-    "label": "A2019DemoPackage",
-    "description": "Fornece ações para operações A2019DemoPackage.",
+    "label": "DatePackage",
+    "description": "Fornece ações para operações DatePackage.",
     "Concatenate.label": "Concatenar",
     "Concatenate.description": "Concatena duas strings",
     "Concatenate.node_label": "{{firstString}} com {{secondString}}",

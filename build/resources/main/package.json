@@ -4,8 +4,8 @@
     "description": "Sample package to demo dictionary return",
     "group": "com.automationanywhere",
     "artifactName": "DatePackage",
-    "packageVersion": "1.2-20210527-145758",
-    "codeVersion": "1.2-20210527-145758",
+    "packageVersion": "1.3-20210602-085503",
+    "codeVersion": "1.3-20210602-085503",
     "author": "",
     "commands": [
         {
@@ -224,40 +224,6 @@
                     "name": "Number",
                     "label": "Number",
                     "type": "NUMBER",
-                    "rules": [
-                        {
-                            "name": "NOT_EMPTY"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "startSession",
-            "label": "DateStart",
-            "description": "Start new session",
-            "nodeLabel": "start session {{sessionName}}|",
-            "mainClass": "com.automationanywhere.botcommand.samples.commands.basic.DateStartCommand",
-            "icon": "pkg.svg",
-            "attributes": [
-                {
-                    "name": "sessionName",
-                    "label": "Session name",
-                    "type": "TEXT",
-                    "defaultValue": {
-                        "string": "Default",
-                        "type": "STRING"
-                    },
-                    "rules": [
-                        {
-                            "name": "NOT_EMPTY"
-                        }
-                    ]
-                },
-                {
-                    "name": "Format",
-                    "label": "Format",
-                    "type": "TEXT",
                     "rules": [
                         {
                             "name": "NOT_EMPTY"
