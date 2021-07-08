@@ -17,7 +17,7 @@ import java.util.Map;
 
 @BotCommand
 @CommandPkg(label = "DateRef",
-        description = "Return a date according to a calculation required", icon = "pkg.svg", name = "Now",
+        description = "Returns a date according to a calculation required", icon = "pkg.svg", name = "Now",
         return_description = "asdasdas", return_type = STRING, return_required = true)
 
 

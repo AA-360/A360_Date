@@ -4,14 +4,14 @@
     "description": "Sample package to demo dictionary return",
     "group": "com.automationanywhere",
     "artifactName": "DatePackage",
-    "packageVersion": "1.3-20210602-085503",
-    "codeVersion": "1.3-20210602-085503",
+    "packageVersion": "1.3.1-20210621-093214",
+    "codeVersion": "1.3.1-20210621-093214",
     "author": "",
     "commands": [
         {
             "name": "ConvertDate",
             "label": "ConvertDate",
-            "description": "Returns current date according to the required format",
+            "description": "Convert a string date to the required format",
             "mainClass": "com.automationanywhere.botcommand.samples.commands.basic.ConvertDateCommand",
             "icon": "pkg.svg",
             "returnType": "STRING",
@@ -161,7 +161,7 @@
         {
             "name": "Now",
             "label": "DateRef",
-            "description": "Return a date according to a calculation required",
+            "description": "Returns a date according to a calculation required",
             "mainClass": "com.automationanywhere.botcommand.samples.commands.basic.DateRefCommand",
             "icon": "pkg.svg",
             "returnType": "STRING",

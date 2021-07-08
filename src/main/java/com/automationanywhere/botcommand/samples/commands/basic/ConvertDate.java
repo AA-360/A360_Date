@@ -15,7 +15,7 @@ import static com.automationanywhere.commandsdk.model.DataType.STRING;
 
 @BotCommand
 @CommandPkg(label = "ConvertDate",
-        description = "Returns current date according to the required format", icon = "pkg.svg", name = "ConvertDate",
+        description = "Convert a string date to the required format", icon = "pkg.svg", name = "ConvertDate",
         return_description = "", return_type = STRING, return_required = true)
 
 
