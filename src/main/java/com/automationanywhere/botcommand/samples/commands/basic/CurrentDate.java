@@ -19,10 +19,17 @@ import java.util.Calendar;
 
 
 
-@BotCommand
-@CommandPkg(label = "CurrentDate",
-        description = "Returns current date according to the required format", icon = "pkg.svg", name = "CurrentDate",
-        return_description = "", return_type = STRING, return_required = true)
+//@BotCommand
+@CommandPkg(
+        label = "CurrentDate",
+        description = "Returns current date according to the required format",
+        node_label = "",
+        icon = "pkg.svg",
+        name = "CurrentDate",
+        return_description = "",
+        return_type = STRING,
+        return_required = true
+)
 
 
 public class CurrentDate {

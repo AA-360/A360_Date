@@ -1,5 +1,5 @@
 {
-	"label": "DatePackage",
+	"label": "Date_Uts",
 	"description": "Provides actions for DatePackage operations.",
 	"Concatenate.label": "Concatenate",
 	"Concatenate.description": "Concatenates two strings",

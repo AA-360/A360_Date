@@ -23,9 +23,16 @@ import java.time.temporal.ChronoUnit;
 
 
 @BotCommand
-@CommandPkg(label = "DateDiff",
-        description = "Returns the difference between dates", icon = "pkg.svg", name = "DateDiff",
-        return_description = "asdasdas", return_type = NUMBER, return_required = true)
+@CommandPkg(
+        label = "DateDiff",
+        description = "Returns the difference between dates",
+        node_label = "Calculate {{radio}}s between {{Date1}} and {{Date2}} and assign to {{returnTo}}",
+        icon = "pkg.svg",
+        name = "DateDiff",
+        return_description = "",
+        return_type = NUMBER,
+        return_required = true
+)
 
 
 public class DateDiff {
@@ -33,7 +40,7 @@ public class DateDiff {
     @Execute
     public NumberValue action(
             @Idx(index = "1", type = TEXT)
-            @Pkg(label = "Format")
+            @Pkg(label = "Format Input",description = "Dates must be in this Format")
             @NotEmpty String Format,
 
             @Idx(index = "2", type = RADIO, options = {

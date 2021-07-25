@@ -11,25 +11,26 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import static com.automationanywhere.commandsdk.model.AttributeType.RADIO;
-import static com.automationanywhere.commandsdk.model.AttributeType.TEXT;
+import static com.automationanywhere.commandsdk.model.AttributeType.*;
 import static com.automationanywhere.commandsdk.model.DataType.STRING;
 
+import java.util.HashMap;
+import java.util.Map;
 
 @BotCommand
 @CommandPkg(
-        label = "ConvertDate",
-        description = "Convert a string date to the required format",
-        node_label = "Date {{DateInput}} to {{FormatOutput}} format and assign to {{returnTo}}",
+        label = "DateCalc",
+        description = "Returns a date according to a calculation required",
+        node_label = "Calculate {{Number}} {{radio}}s from {{RadioDateType}} and assign to {{returnTo}}",
         icon = "pkg.svg",
-        name = "ConvertDate",
+        name = "Now",
         return_description = "",
         return_type = STRING,
         return_required = true
 )
 
 
-public class ConvertDate {
+public class DateCalc {
 
     @Execute
     public StringValue action(
@@ -52,10 +53,25 @@ public class ConvertDate {
             @Idx(index = "2", type = TEXT)
             @Pkg(label = "Format Output")
             @NotEmpty
-                    String FormatOutput
+                    String FormatOutput,
+            @Idx(index = "3", type = RADIO, options = {
+                    @Idx.Option(index ="3.1", pkg = @Pkg(label = "Day", value = "d")),
+                    @Idx.Option(index ="3.2", pkg = @Pkg(label = "Month", value = "M")),
+                    @Idx.Option(index ="3.3", pkg = @Pkg(label = "Year", value = "y")),
+                    @Idx.Option(index ="3.4", pkg = @Pkg(label = "Hour", value = "h")),
+                    @Idx.Option(index ="3.5", pkg = @Pkg(label = "Minute", value = "m")),
+                    @Idx.Option(index ="3.6", pkg = @Pkg(label = "Second", value = "s"))
+            })
+            @Pkg(label = "Calculation Type",default_value = "d", default_value_type = STRING)
+            @NotEmpty
+                    String radio,
+            @Idx(index = "4", type = NUMBER)
+            @Pkg(label = "Number")
+            @NotEmpty
+                    Double Number
     ) {
-        try{
 
+            int qtd2 = Number.intValue();
             Date date = new Date();
             Calendar c = Calendar.getInstance();
             SimpleDateFormat formatterInput = new SimpleDateFormat(FormatInput);
@@ -68,14 +84,27 @@ public class ConvertDate {
                     throw new BotCommandException(e.getMessage().toString());
                 }
             }
+
             c.setTime(date);
 
+            if (radio == "d"){
+                c.add(Calendar.DATE, qtd2);
+            }else if(radio == "M"){
+                c.add(Calendar.MONTH, qtd2);
+            }else if(radio == "y"){
+                c.add(Calendar.YEAR, qtd2);
+            }else if(radio == "h"){
+                c.add(Calendar.HOUR, qtd2);
+            }else if(radio == "m"){
+                c.add(Calendar.MINUTE, qtd2);
+            }else{
+                c.add(Calendar.SECOND, qtd2);
+            }
+
+            date = c.getTime();
             String strDate = formatterOutput.format(date);
 
             return new StringValue(strDate);
-        }
-        catch(Exception ex){
-            return new StringValue(ex.getMessage());
-        }    
+
     }
 }

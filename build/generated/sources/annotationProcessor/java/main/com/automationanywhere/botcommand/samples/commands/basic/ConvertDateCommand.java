@@ -34,38 +34,59 @@ public final class ConvertDateCommand implements BotCommand {
     logger.traceEntry(() -> parameters != null ? parameters.entrySet().stream().filter(en -> !Arrays.asList( new String[] {}).contains(en.getKey()) && en.getValue() != null).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)).toString() : null, ()-> sessionMap != null ?sessionMap.toString() : null);
     ConvertDate command = new ConvertDate();
     HashMap<String, Object> convertedParameters = new HashMap<String, Object>();
-    if(parameters.containsKey("Format") && parameters.get("Format") != null && parameters.get("Format").get() != null) {
-      convertedParameters.put("Format", parameters.get("Format").get());
-      if(convertedParameters.get("Format") !=null && !(convertedParameters.get("Format") instanceof String)) {
-        throw new BotCommandException(MESSAGES_GENERIC.getString("generic.UnexpectedTypeReceived","Format", "String", parameters.get("Format").get().getClass().getSimpleName()));
+    if(parameters.containsKey("RadioDateType") && parameters.get("RadioDateType") != null && parameters.get("RadioDateType").get() != null) {
+      convertedParameters.put("RadioDateType", parameters.get("RadioDateType").get());
+      if(convertedParameters.get("RadioDateType") !=null && !(convertedParameters.get("RadioDateType") instanceof String)) {
+        throw new BotCommandException(MESSAGES_GENERIC.getString("generic.UnexpectedTypeReceived","RadioDateType", "String", parameters.get("RadioDateType").get().getClass().getSimpleName()));
       }
     }
-    if(convertedParameters.get("Format") == null) {
-      throw new BotCommandException(MESSAGES_GENERIC.getString("generic.validation.notEmpty","Format"));
+    if(convertedParameters.get("RadioDateType") == null) {
+      throw new BotCommandException(MESSAGES_GENERIC.getString("generic.validation.notEmpty","RadioDateType"));
+    }
+    if(convertedParameters.get("RadioDateType") != null) {
+      switch((String)convertedParameters.get("RadioDateType")) {
+        case "today" : {
+
+        } break;
+        case "date" : {
+          if(parameters.containsKey("DateInput") && parameters.get("DateInput") != null && parameters.get("DateInput").get() != null) {
+            convertedParameters.put("DateInput", parameters.get("DateInput").get());
+            if(convertedParameters.get("DateInput") !=null && !(convertedParameters.get("DateInput") instanceof String)) {
+              throw new BotCommandException(MESSAGES_GENERIC.getString("generic.UnexpectedTypeReceived","DateInput", "String", parameters.get("DateInput").get().getClass().getSimpleName()));
+            }
+          }
+          if(convertedParameters.get("DateInput") == null) {
+            throw new BotCommandException(MESSAGES_GENERIC.getString("generic.validation.notEmpty","DateInput"));
+          }
+
+          if(parameters.containsKey("FormatInput") && parameters.get("FormatInput") != null && parameters.get("FormatInput").get() != null) {
+            convertedParameters.put("FormatInput", parameters.get("FormatInput").get());
+            if(convertedParameters.get("FormatInput") !=null && !(convertedParameters.get("FormatInput") instanceof String)) {
+              throw new BotCommandException(MESSAGES_GENERIC.getString("generic.UnexpectedTypeReceived","FormatInput", "String", parameters.get("FormatInput").get().getClass().getSimpleName()));
+            }
+          }
+          if(convertedParameters.get("FormatInput") == null) {
+            throw new BotCommandException(MESSAGES_GENERIC.getString("generic.validation.notEmpty","FormatInput"));
+          }
+
+
+        } break;
+        default : throw new BotCommandException(MESSAGES_GENERIC.getString("generic.InvalidOption","RadioDateType"));
+      }
     }
 
-    if(parameters.containsKey("FormatOut") && parameters.get("FormatOut") != null && parameters.get("FormatOut").get() != null) {
-      convertedParameters.put("FormatOut", parameters.get("FormatOut").get());
-      if(convertedParameters.get("FormatOut") !=null && !(convertedParameters.get("FormatOut") instanceof String)) {
-        throw new BotCommandException(MESSAGES_GENERIC.getString("generic.UnexpectedTypeReceived","FormatOut", "String", parameters.get("FormatOut").get().getClass().getSimpleName()));
+    if(parameters.containsKey("FormatOutput") && parameters.get("FormatOutput") != null && parameters.get("FormatOutput").get() != null) {
+      convertedParameters.put("FormatOutput", parameters.get("FormatOutput").get());
+      if(convertedParameters.get("FormatOutput") !=null && !(convertedParameters.get("FormatOutput") instanceof String)) {
+        throw new BotCommandException(MESSAGES_GENERIC.getString("generic.UnexpectedTypeReceived","FormatOutput", "String", parameters.get("FormatOutput").get().getClass().getSimpleName()));
       }
     }
-    if(convertedParameters.get("FormatOut") == null) {
-      throw new BotCommandException(MESSAGES_GENERIC.getString("generic.validation.notEmpty","FormatOut"));
-    }
-
-    if(parameters.containsKey("Date1") && parameters.get("Date1") != null && parameters.get("Date1").get() != null) {
-      convertedParameters.put("Date1", parameters.get("Date1").get());
-      if(convertedParameters.get("Date1") !=null && !(convertedParameters.get("Date1") instanceof String)) {
-        throw new BotCommandException(MESSAGES_GENERIC.getString("generic.UnexpectedTypeReceived","Date1", "String", parameters.get("Date1").get().getClass().getSimpleName()));
-      }
-    }
-    if(convertedParameters.get("Date1") == null) {
-      throw new BotCommandException(MESSAGES_GENERIC.getString("generic.validation.notEmpty","Date1"));
+    if(convertedParameters.get("FormatOutput") == null) {
+      throw new BotCommandException(MESSAGES_GENERIC.getString("generic.validation.notEmpty","FormatOutput"));
     }
 
     try {
-      Optional<Value> result =  Optional.ofNullable(command.action((String)convertedParameters.get("Format"),(String)convertedParameters.get("FormatOut"),(String)convertedParameters.get("Date1")));
+      Optional<Value> result =  Optional.ofNullable(command.action((String)convertedParameters.get("RadioDateType"),(String)convertedParameters.get("DateInput"),(String)convertedParameters.get("FormatInput"),(String)convertedParameters.get("FormatOutput")));
       return logger.traceExit(result);
     }
     catch (ClassCastException e) {
