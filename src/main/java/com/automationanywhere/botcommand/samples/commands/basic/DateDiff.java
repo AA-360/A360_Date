@@ -73,15 +73,15 @@ public class DateDiff {
 
             long diff = 0;
 
-            if (radio == "d")
+            if (radio.equals("d"))
                 diff = dTime1.until(dTime2, ChronoUnit.DAYS);
-            else if(radio == "M")
+            else if(radio.equals("M"))
                 diff = dTime1.until(dTime2, ChronoUnit.MONTHS);
-            else if(radio == "y")
+            else if(radio.equals("y"))
                 diff = dTime1.until(dTime2, ChronoUnit.YEARS);
-            else if(radio == "h")
+            else if(radio.equals("h"))
                 diff = dTime1.until(dTime2, ChronoUnit.HOURS);
-            else if(radio == "m")
+            else if(radio.equals("m"))
                 diff = dTime1.until(dTime2, ChronoUnit.MINUTES);
             else
                 diff = dTime1.until(dTime2, ChronoUnit.SECONDS);
