@@ -4,8 +4,8 @@
     "description": "Sample package to demo dictionary return",
     "group": "com.automationanywhere",
     "artifactName": "Date_Uts",
-    "packageVersion": "1.3.4-20210726-115158",
-    "codeVersion": "1.3.4-20210726-115158",
+    "packageVersion": "1.3.4-20210726-125450",
+    "codeVersion": "1.3.4-20210726-125450",
     "author": "",
     "commands": [
         {
@@ -55,6 +55,39 @@
                                 {
                                     "name": "FormatInput",
                                     "label": "Format Input",
+                                    "type": "TEXT",
+                                    "rules": [
+                                        {
+                                            "name": "NOT_EMPTY"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "label": "number",
+                            "value": "numberN",
+                            "attributes": [
+                                {
+                                    "name": "NumberDate",
+                                    "label": "Number:",
+                                    "type": "NUMBER",
+                                    "rules": [
+                                        {
+                                            "name": "NOT_EMPTY"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "label": "numberText",
+                            "description": "US format like: 432.00",
+                            "value": "numberT",
+                            "attributes": [
+                                {
+                                    "name": "NumberStr",
+                                    "label": "NumberString",
                                     "type": "TEXT",
                                     "rules": [
                                         {

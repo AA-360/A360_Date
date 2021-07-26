@@ -8,6 +8,7 @@ import com.automationanywhere.commandsdk.i18n.Messages;
 import com.automationanywhere.commandsdk.i18n.MessagesFactory;
 import java.lang.ClassCastException;
 import java.lang.Deprecated;
+import java.lang.Double;
 import java.lang.Object;
 import java.lang.String;
 import java.lang.Throwable;
@@ -71,6 +72,32 @@ public final class ConvertDateCommand implements BotCommand {
 
 
         } break;
+        case "numberN" : {
+          if(parameters.containsKey("NumberDate") && parameters.get("NumberDate") != null && parameters.get("NumberDate").get() != null) {
+            convertedParameters.put("NumberDate", parameters.get("NumberDate").get());
+            if(convertedParameters.get("NumberDate") !=null && !(convertedParameters.get("NumberDate") instanceof Double)) {
+              throw new BotCommandException(MESSAGES_GENERIC.getString("generic.UnexpectedTypeReceived","NumberDate", "Double", parameters.get("NumberDate").get().getClass().getSimpleName()));
+            }
+          }
+          if(convertedParameters.get("NumberDate") == null) {
+            throw new BotCommandException(MESSAGES_GENERIC.getString("generic.validation.notEmpty","NumberDate"));
+          }
+
+
+        } break;
+        case "numberT" : {
+          if(parameters.containsKey("NumberStr") && parameters.get("NumberStr") != null && parameters.get("NumberStr").get() != null) {
+            convertedParameters.put("NumberStr", parameters.get("NumberStr").get());
+            if(convertedParameters.get("NumberStr") !=null && !(convertedParameters.get("NumberStr") instanceof String)) {
+              throw new BotCommandException(MESSAGES_GENERIC.getString("generic.UnexpectedTypeReceived","NumberStr", "String", parameters.get("NumberStr").get().getClass().getSimpleName()));
+            }
+          }
+          if(convertedParameters.get("NumberStr") == null) {
+            throw new BotCommandException(MESSAGES_GENERIC.getString("generic.validation.notEmpty","NumberStr"));
+          }
+
+
+        } break;
         default : throw new BotCommandException(MESSAGES_GENERIC.getString("generic.InvalidOption","RadioDateType"));
       }
     }
@@ -86,7 +113,7 @@ public final class ConvertDateCommand implements BotCommand {
     }
 
     try {
-      Optional<Value> result =  Optional.ofNullable(command.action((String)convertedParameters.get("RadioDateType"),(String)convertedParameters.get("DateInput"),(String)convertedParameters.get("FormatInput"),(String)convertedParameters.get("FormatOutput")));
+      Optional<Value> result =  Optional.ofNullable(command.action((String)convertedParameters.get("RadioDateType"),(String)convertedParameters.get("DateInput"),(String)convertedParameters.get("FormatInput"),(Double)convertedParameters.get("NumberDate"),(String)convertedParameters.get("NumberStr"),(String)convertedParameters.get("FormatOutput")));
       return logger.traceExit(result);
     }
     catch (ClassCastException e) {

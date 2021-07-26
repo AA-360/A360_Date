@@ -94,8 +94,8 @@ configure(allprojects){
 		testImplementation "org.testng:testng:$testNgVersion"
 		testImplementation name: 'bot-runtime', version: '1+'
 		testImplementation name: 'bot-api', version: '1+'
-			
-		
+
+		implementation group: 'org.apache.poi', name: 'poi', version: '3.9'
 		//Add below dependencies to compile the samples
 
 		//implementation group: 'net.java.dev.jna', name: 'jna-platform', version: "$jnaVersion"	
