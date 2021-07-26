@@ -65,8 +65,8 @@ public class DateDiff {
     ) {
 
             Date dt1,dt2;
-            dt1 = Uteis.StringToDate(Format,Date1);
-            dt2 = Uteis.StringToDate(Format,Date2);
+            dt1 = Uteis.StringToDate(Date1,Format);
+            dt2 = Uteis.StringToDate(Date2,Format);
 
             LocalDateTime dTime1 = dt1.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
             LocalDateTime dTime2 = dt2.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();

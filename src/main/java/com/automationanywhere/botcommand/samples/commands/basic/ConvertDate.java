@@ -2,6 +2,7 @@ package com.automationanywhere.botcommand.samples.commands.basic;
 
 import com.automationanywhere.botcommand.data.impl.StringValue;
 import com.automationanywhere.botcommand.exception.BotCommandException;
+import com.automationanywhere.botcommand.samples.commands.utils.Debugger;
 import com.automationanywhere.botcommand.samples.commands.utils.Uteis;
 import com.automationanywhere.commandsdk.annotations.*;
 import com.automationanywhere.commandsdk.annotations.rules.NotEmpty;
@@ -51,17 +52,14 @@ public class ConvertDate {
             @Pkg(label = "Format Input")
             @NotEmpty
                     String FormatInput,
-
             @Idx(index = "1.3.1", type = NUMBER)
-            @Pkg(label = "Number:")
+            @Pkg(label = "Number")
             @NotEmpty
                     Double NumberDate,
-
             @Idx(index = "1.4.1", type = TEXT)
-            @Pkg(label = "NumberString")
+            @Pkg(label = "Number Text")
             @NotEmpty
                     String NumberStr,
-
             @Idx(index = "2", type = TEXT)
             @Pkg(label = "Format Output")
             @NotEmpty
