@@ -6,7 +6,7 @@ public class ConvertDateTest {
     @Test
     public void teste(){
         ConvertDate a = new ConvertDate();
-        StringValue date = a.action("date","dd/MM/yyyy","ddMMyyyy","01/07/2021");
+        StringValue date = a.action("","","","ddMMyyyy");
         System.out.println("==================");
         System.out.println("Expected First Value: " + date);
     }

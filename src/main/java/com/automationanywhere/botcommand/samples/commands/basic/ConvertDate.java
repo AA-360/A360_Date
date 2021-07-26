@@ -54,28 +54,22 @@ public class ConvertDate {
             @NotEmpty
                     String FormatOutput
     ) {
-        try{
+        Date date = new Date();
+        SimpleDateFormat formatterOutput = new SimpleDateFormat(FormatOutput);
 
-            Date date = new Date();
-            Calendar c = Calendar.getInstance();
-            SimpleDateFormat formatterInput = new SimpleDateFormat(FormatInput);
-            SimpleDateFormat formatterOutput = new SimpleDateFormat(FormatOutput);
-
-            if(RadioDateType == "date"){
-                try {
-                    date= formatterInput.parse(DateInput);
-                } catch (ParseException e) {
-                    throw new BotCommandException(e.getMessage().toString());
-                }
+        if(RadioDateType.equals("date")){
+            try {
+                SimpleDateFormat formatterInput = new SimpleDateFormat(FormatInput);
+                date= formatterInput.parse(DateInput);
+            } catch (ParseException e) {
+                throw new BotCommandException(e.getMessage().toString());
             }
-            c.setTime(date);
-
-            String strDate = formatterOutput.format(date);
-
-            return new StringValue(strDate);
+        }else{
+            date = Calendar.getInstance().getTime();
         }
-        catch(Exception ex){
-            return new StringValue(ex.getMessage());
-        }    
+
+        String strDate = formatterOutput.format(date);
+
+        return new StringValue(strDate);
     }
 }

@@ -1,5 +1,6 @@
 package com.automationanywhere.botcommand.samples.commands.basic;
 import com.automationanywhere.botcommand.data.impl.StringValue;
+import com.automationanywhere.botcommand.exception.BotCommandException;
 import com.automationanywhere.commandsdk.annotations.BotCommand;
 import com.automationanywhere.commandsdk.annotations.CommandPkg;
 import com.automationanywhere.commandsdk.annotations.Execute;
@@ -49,8 +50,8 @@ public class CurrentDate {
 
             return new StringValue(strDate);
         }
-        catch(Exception ex){
-            return new StringValue(ex.getMessage());
+        catch(Exception e){
+            throw new BotCommandException(e.getMessage());
         }    
     }
 }
