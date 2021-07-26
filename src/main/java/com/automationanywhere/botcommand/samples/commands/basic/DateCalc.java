@@ -2,6 +2,7 @@ package com.automationanywhere.botcommand.samples.commands.basic;
 
 import com.automationanywhere.botcommand.data.impl.StringValue;
 import com.automationanywhere.botcommand.exception.BotCommandException;
+import com.automationanywhere.botcommand.samples.commands.utils.Uteis;
 import com.automationanywhere.commandsdk.annotations.*;
 import com.automationanywhere.commandsdk.annotations.rules.NotEmpty;
 
@@ -72,17 +73,13 @@ public class DateCalc {
     ) {
 
             int qtd2 = Number.intValue();
-            Date date = new Date();
             Calendar c = Calendar.getInstance();
-            SimpleDateFormat formatterInput = new SimpleDateFormat(FormatInput);
-            SimpleDateFormat formatterOutput = new SimpleDateFormat(FormatOutput);
+            Date date;
 
-            if(RadioDateType == "date"){
-                try {
-                    date= formatterInput.parse(DateInput);
-                } catch (ParseException e) {
-                    throw new BotCommandException(e.getMessage().toString());
-                }
+            if(RadioDateType.equals("date")){
+                date = Uteis.StringToDate(DateInput,FormatInput);
+            }else{
+                date = Calendar.getInstance().getTime();
             }
 
             c.setTime(date);
@@ -102,7 +99,7 @@ public class DateCalc {
             }
 
             date = c.getTime();
-            String strDate = formatterOutput.format(date);
+            String strDate = Uteis.DateToString(date,FormatOutput);
 
             return new StringValue(strDate);
 

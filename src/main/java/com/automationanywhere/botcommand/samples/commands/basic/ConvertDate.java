@@ -2,6 +2,7 @@ package com.automationanywhere.botcommand.samples.commands.basic;
 
 import com.automationanywhere.botcommand.data.impl.StringValue;
 import com.automationanywhere.botcommand.exception.BotCommandException;
+import com.automationanywhere.botcommand.samples.commands.utils.Uteis;
 import com.automationanywhere.commandsdk.annotations.*;
 import com.automationanywhere.commandsdk.annotations.rules.NotEmpty;
 
@@ -20,7 +21,7 @@ import static com.automationanywhere.commandsdk.model.DataType.STRING;
 @CommandPkg(
         label = "ConvertDate",
         description = "Convert a string date to the required format",
-        node_label = "Date {{DateInput}} to {{FormatOutput}} format and assign to {{returnTo}}",
+        node_label = "Date to {{FormatOutput}} format and assign to {{returnTo}}",
         icon = "pkg.svg",
         name = "ConvertDate",
         return_description = "",
@@ -54,21 +55,15 @@ public class ConvertDate {
             @NotEmpty
                     String FormatOutput
     ) {
-        Date date = new Date();
-        SimpleDateFormat formatterOutput = new SimpleDateFormat(FormatOutput);
+        Date date;
 
         if(RadioDateType.equals("date")){
-            try {
-                SimpleDateFormat formatterInput = new SimpleDateFormat(FormatInput);
-                date= formatterInput.parse(DateInput);
-            } catch (ParseException e) {
-                throw new BotCommandException(e.getMessage().toString());
-            }
+            date = Uteis.StringToDate(DateInput,FormatInput);
         }else{
             date = Calendar.getInstance().getTime();
         }
 
-        String strDate = formatterOutput.format(date);
+        String strDate = Uteis.DateToString(date,FormatOutput);
 
         return new StringValue(strDate);
     }
