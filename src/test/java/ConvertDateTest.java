@@ -23,7 +23,7 @@ public class ConvertDateTest {
         holidays.add(new StringValue("2021-09-03"));
         holidays.add(new StringValue("2021-09-06"));
 
-        Value dat = a.action("date","2021-09-01","yyyy-MM-dd",2.0,true,false,true,holidays,"yyyy,MM,dd");
+        Value dat = a.action("date","2021-09-01","yyyy-MM-dd",2.0,true,false,true,holidays,"yyyy,MM,dd HH:mm");
         System.out.println("date:" + dat);
 
 
