@@ -13,6 +13,15 @@ import java.util.List;
 public class ConvertDateTest {
 
     @Test
+    public void test2(){
+
+        ConvertDate a = new ConvertDate();
+        String out = "EE";
+        StringValue date = a.action("today",null,null,null,null,"epoch","");
+        System.out.println("Expected First Value: " + date);
+    }
+
+
     public void mesa2(){
         WorkingDays a = new WorkingDays();
 
@@ -55,11 +64,10 @@ public class ConvertDateTest {
 
     }
 
-
     public void teste(){
         ConvertDate a = new ConvertDate();
         String out = "EE";
-        StringValue date = a.action("today",null,null,null,null,out);
+        StringValue date = a.action("today",null,null,null,null,"custom",out);
         //StringValue date = a.action("today","01/01/2020",null,"dd/MM/yyyy");
         System.out.println("==================");
         System.out.println("Expected First Value: " + date);

@@ -35,7 +35,7 @@ public class ConvertDate {
 
     @Execute
     public StringValue action(
-            @Idx(index = "1", type = RADIO, options = {
+            @Idx(index = "1", type = SELECT, options = {
                     @Idx.Option(index ="1.1", pkg = @Pkg(label = "today", value = "today")),
                     @Idx.Option(index ="1.2", pkg = @Pkg(label = "date", value = "date")),
                     @Idx.Option(index ="1.3", pkg = @Pkg(label = "number", value = "numberN")),
@@ -60,7 +60,14 @@ public class ConvertDate {
             @Pkg(label = "Number Text")
             @NotEmpty
                     String NumberStr,
-            @Idx(index = "2", type = TEXT)
+            @Idx(index = "2", type = SELECT, options = {
+                    @Idx.Option(index ="2.1", pkg = @Pkg(label = "Custom", value = "custom",description = "define the output like yyyy-MM-dd")),
+                    @Idx.Option(index ="2.2", pkg = @Pkg(label = "Unix Epoch", value = "epoch", description = "returns the number of milliseconds since January 1, 1970, 00:00:00 GTM"))
+            })
+            @Pkg(label = "Format Output",default_value = "custom", default_value_type = STRING)
+            @NotEmpty
+                    String opt_output,
+            @Idx(index = "2.1.1", type = TEXT)
             @Pkg(label = "Format Output")
             @NotEmpty
                     String FormatOutput
@@ -77,7 +84,16 @@ public class ConvertDate {
             date = DateUtil.getJavaDate((double) Double.parseDouble(NumberStr));
         }
 
-        String strDate = Uteis.DateToString(date,FormatOutput);
+
+        String strDate = "";
+
+        if(opt_output.equals("custom")){
+            strDate = Uteis.DateToString(date,FormatOutput);
+        }
+        if(opt_output.equals("epoch")){
+            strDate = date.getTime() + "";
+        }
+
 
         return new StringValue(strDate);
     }

@@ -102,18 +102,39 @@ public final class ConvertDateCommand implements BotCommand {
       }
     }
 
-    if(parameters.containsKey("FormatOutput") && parameters.get("FormatOutput") != null && parameters.get("FormatOutput").get() != null) {
-      convertedParameters.put("FormatOutput", parameters.get("FormatOutput").get());
-      if(convertedParameters.get("FormatOutput") !=null && !(convertedParameters.get("FormatOutput") instanceof String)) {
-        throw new BotCommandException(MESSAGES_GENERIC.getString("generic.UnexpectedTypeReceived","FormatOutput", "String", parameters.get("FormatOutput").get().getClass().getSimpleName()));
+    if(parameters.containsKey("opt_output") && parameters.get("opt_output") != null && parameters.get("opt_output").get() != null) {
+      convertedParameters.put("opt_output", parameters.get("opt_output").get());
+      if(convertedParameters.get("opt_output") !=null && !(convertedParameters.get("opt_output") instanceof String)) {
+        throw new BotCommandException(MESSAGES_GENERIC.getString("generic.UnexpectedTypeReceived","opt_output", "String", parameters.get("opt_output").get().getClass().getSimpleName()));
       }
     }
-    if(convertedParameters.get("FormatOutput") == null) {
-      throw new BotCommandException(MESSAGES_GENERIC.getString("generic.validation.notEmpty","FormatOutput"));
+    if(convertedParameters.get("opt_output") == null) {
+      throw new BotCommandException(MESSAGES_GENERIC.getString("generic.validation.notEmpty","opt_output"));
+    }
+    if(convertedParameters.get("opt_output") != null) {
+      switch((String)convertedParameters.get("opt_output")) {
+        case "custom" : {
+          if(parameters.containsKey("FormatOutput") && parameters.get("FormatOutput") != null && parameters.get("FormatOutput").get() != null) {
+            convertedParameters.put("FormatOutput", parameters.get("FormatOutput").get());
+            if(convertedParameters.get("FormatOutput") !=null && !(convertedParameters.get("FormatOutput") instanceof String)) {
+              throw new BotCommandException(MESSAGES_GENERIC.getString("generic.UnexpectedTypeReceived","FormatOutput", "String", parameters.get("FormatOutput").get().getClass().getSimpleName()));
+            }
+          }
+          if(convertedParameters.get("FormatOutput") == null) {
+            throw new BotCommandException(MESSAGES_GENERIC.getString("generic.validation.notEmpty","FormatOutput"));
+          }
+
+
+        } break;
+        case "epoch" : {
+
+        } break;
+        default : throw new BotCommandException(MESSAGES_GENERIC.getString("generic.InvalidOption","opt_output"));
+      }
     }
 
     try {
-      Optional<Value> result =  Optional.ofNullable(command.action((String)convertedParameters.get("RadioDateType"),(String)convertedParameters.get("DateInput"),(String)convertedParameters.get("FormatInput"),(Double)convertedParameters.get("NumberDate"),(String)convertedParameters.get("NumberStr"),(String)convertedParameters.get("FormatOutput")));
+      Optional<Value> result =  Optional.ofNullable(command.action((String)convertedParameters.get("RadioDateType"),(String)convertedParameters.get("DateInput"),(String)convertedParameters.get("FormatInput"),(Double)convertedParameters.get("NumberDate"),(String)convertedParameters.get("NumberStr"),(String)convertedParameters.get("opt_output"),(String)convertedParameters.get("FormatOutput")));
       return logger.traceExit(result);
     }
     catch (ClassCastException e) {

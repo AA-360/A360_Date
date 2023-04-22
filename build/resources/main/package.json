@@ -4,8 +4,8 @@
     "description": "Sample package to demo dictionary return",
     "group": "com.automationanywhere",
     "artifactName": "Date_Uts",
-    "packageVersion": "1.3.5-20210902-193438",
-    "codeVersion": "1.3.5-20210902-193438",
+    "packageVersion": "1.3.7-20230410-180155",
+    "codeVersion": "1.3.7-20230410-180155",
     "author": "",
     "commands": [
         {
@@ -23,7 +23,7 @@
                 {
                     "name": "RadioDateType",
                     "label": "Calculate from:",
-                    "type": "RADIO",
+                    "type": "SELECT",
                     "defaultValue": {
                         "string": "today",
                         "type": "STRING"
@@ -100,12 +100,40 @@
                     ]
                 },
                 {
-                    "name": "FormatOutput",
+                    "name": "opt_output",
                     "label": "Format Output",
-                    "type": "TEXT",
+                    "type": "SELECT",
+                    "defaultValue": {
+                        "string": "custom",
+                        "type": "STRING"
+                    },
                     "rules": [
                         {
                             "name": "NOT_EMPTY"
+                        }
+                    ],
+                    "options": [
+                        {
+                            "label": "Custom",
+                            "description": "define the output like yyyy-MM-dd",
+                            "value": "custom",
+                            "attributes": [
+                                {
+                                    "name": "FormatOutput",
+                                    "label": "Format Output",
+                                    "type": "TEXT",
+                                    "rules": [
+                                        {
+                                            "name": "NOT_EMPTY"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "label": "Unix Epoch",
+                            "description": "returns the number of milliseconds since January 1, 1970, 00:00:00 GTM",
+                            "value": "epoch"
                         }
                     ]
                 }
