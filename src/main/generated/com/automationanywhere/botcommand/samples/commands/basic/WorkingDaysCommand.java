@@ -35,7 +35,7 @@ public final class WorkingDaysCommand implements BotCommand {
   public Optional<Value> execute(GlobalSessionContext globalSessionContext,
       Map<String, Value> parameters, Map<String, Object> sessionMap) {
     logger.traceEntry(() -> parameters != null ? parameters.entrySet().stream().filter(en -> !Arrays.asList( new String[] {}).contains(en.getKey()) && en.getValue() != null).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)).toString() : null, ()-> sessionMap != null ?sessionMap.toString() : null);
-    WorkingDays command = new WorkingDays();
+    NextWorkingDay command = new NextWorkingDay();
     HashMap<String, Object> convertedParameters = new HashMap<String, Object>();
     if(parameters.containsKey("RadioDateType") && parameters.get("RadioDateType") != null && parameters.get("RadioDateType").get() != null) {
       convertedParameters.put("RadioDateType", parameters.get("RadioDateType").get());

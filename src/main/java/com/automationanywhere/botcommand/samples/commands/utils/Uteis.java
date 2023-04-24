@@ -5,6 +5,7 @@ import com.automationanywhere.botcommand.exception.BotCommandException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class Uteis {
 
@@ -19,7 +20,7 @@ public class Uteis {
 
     public static String DateToString(Date date,String format){
         try {
-            SimpleDateFormat formatterOutput = new SimpleDateFormat(format);
+            SimpleDateFormat formatterOutput = new SimpleDateFormat(format, Locale.ENGLISH);
             return formatterOutput.format(date);
         } catch (NullPointerException e) {
             throw new BotCommandException(e.getMessage());

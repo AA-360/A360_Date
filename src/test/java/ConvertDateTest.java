@@ -1,8 +1,13 @@
 import com.automationanywhere.botcommand.data.Value;
 import com.automationanywhere.botcommand.data.impl.StringValue;
 import com.automationanywhere.botcommand.samples.commands.basic.ConvertDate;
-import com.automationanywhere.botcommand.samples.commands.basic.WorkingDays;
+import com.automationanywhere.botcommand.samples.commands.basic.NextWorkingDay;
+import com.automationanywhere.botcommand.samples.commands.conditional.IsWorkingDay;
 import com.automationanywhere.botcommand.samples.commands.utils.Uteis;
+import com.automationanywhere.botcommand.samples.variable.LastMonthFirstDate;
+import com.automationanywhere.botcommand.samples.variable.WeekDay;
+
+import com.automationanywhere.botcommand.samples.variable.LastMonthLastDate;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
@@ -13,6 +18,23 @@ import java.util.List;
 public class ConvertDateTest {
 
     @Test
+    public void var(){
+
+        IsWorkingDay a = new IsWorkingDay();
+
+        List<Value> holidays = new ArrayList<>();
+        //List<Date> DtFeriados = new ArrayList<>();
+        Calendar cal = Calendar.getInstance();
+
+        holidays.add(new StringValue("2023-04-24"));
+        holidays.add(new StringValue("2023-04-06"));
+
+        Boolean dat = a.validate("today","2021-09-01","yyyy-MM-dd",true,true,true,holidays);
+        System.out.println("value:" + dat);
+
+
+    }
+
     public void test2(){
 
         ConvertDate a = new ConvertDate();
@@ -23,7 +45,7 @@ public class ConvertDateTest {
 
 
     public void mesa2(){
-        WorkingDays a = new WorkingDays();
+        NextWorkingDay a = new NextWorkingDay();
 
         List<Value> holidays = new ArrayList<>();
         //List<Date> DtFeriados = new ArrayList<>();

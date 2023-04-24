@@ -4,8 +4,8 @@
     "description": "Sample package to demo dictionary return",
     "group": "com.automationanywhere",
     "artifactName": "Date_Uts",
-    "packageVersion": "1.3.7-20230410-180155",
-    "codeVersion": "1.3.7-20230410-180155",
+    "packageVersion": "1.3.9-20230424-095727",
+    "codeVersion": "1.3.9-20230424-095727",
     "author": "",
     "commands": [
         {
@@ -345,11 +345,11 @@
             ]
         },
         {
-            "name": "WorkingDays",
-            "label": "WorkingDays",
+            "name": "NextWorkingDay",
+            "label": "NextWorkingDay",
             "description": "Get next working day by add/substract a number of days",
             "nodeLabel": "Get {{days}} days from {{RadioDateType}} and assign to {{returnTo}} ",
-            "mainClass": "com.automationanywhere.botcommand.samples.commands.basic.WorkingDaysCommand",
+            "mainClass": "com.automationanywhere.botcommand.samples.commands.basic.NextWorkingDayCommand",
             "icon": "pkg.svg",
             "returnType": "STRING",
             "returnSubtype": "UNDEFINED",
@@ -475,6 +475,177 @@
                     ]
                 }
             ]
+        }
+    ],
+    "conditionals": [
+        {
+            "name": "IsWorkingDay",
+            "label": "IsWorkingDay",
+            "description": "Checks id date is working date or not.",
+            "nodeLabel": "Checks if {{date}} is a working day",
+            "mainClass": "com.automationanywhere.botcommand.samples.commands.conditional.IsWorkingDayCondition",
+            "attributes": [
+                {
+                    "name": "RadioDateType",
+                    "label": "Calculate from:",
+                    "type": "RADIO",
+                    "defaultValue": {
+                        "string": "today",
+                        "type": "STRING"
+                    },
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
+                        }
+                    ],
+                    "options": [
+                        {
+                            "label": "today",
+                            "value": "today"
+                        },
+                        {
+                            "label": "date",
+                            "value": "date",
+                            "attributes": [
+                                {
+                                    "name": "DateInput",
+                                    "label": "Date",
+                                    "type": "TEXT",
+                                    "rules": [
+                                        {
+                                            "name": "NOT_EMPTY"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "FormatInput",
+                                    "label": "Format Input",
+                                    "type": "TEXT",
+                                    "rules": [
+                                        {
+                                            "name": "NOT_EMPTY"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "IgnoreSaturday",
+                    "label": "Ignore Saturday:",
+                    "type": "CHECKBOX",
+                    "defaultValue": {
+                        "boolean": true,
+                        "type": "BOOLEAN"
+                    },
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
+                        }
+                    ]
+                },
+                {
+                    "name": "IgnoreSunday",
+                    "label": "Ignore Sunday:",
+                    "type": "CHECKBOX",
+                    "defaultValue": {
+                        "boolean": true,
+                        "type": "BOOLEAN"
+                    },
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
+                        }
+                    ]
+                },
+                {
+                    "name": "use_holidays",
+                    "label": "HolyDays:",
+                    "description": "hollidays to ignore",
+                    "type": "CHECKBOX",
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
+                        }
+                    ],
+                    "attributes": [
+                        {
+                            "name": "Vholidays",
+                            "label": "HolyDays:",
+                            "description": "List of hollidays date format migth be yyyy-MM-dd",
+                            "type": "LIST",
+                            "rules": [
+                                {
+                                    "name": "NOT_EMPTY"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "variables": [
+        {
+            "name": "CurrentMonthFirstDate",
+            "description": "Returns current month first date as a String format yyyy-MM-dd",
+            "mainClass": "com.automationanywhere.botcommand.samples.variable.CurrentMonthFirstDateVariable",
+            "type": "STRING"
+        },
+        {
+            "name": "CurrentMonthLastDate",
+            "description": "Returns current month last date as a String format yyyy-MM-dd",
+            "mainClass": "com.automationanywhere.botcommand.samples.variable.CurrentMonthLastDateVariable",
+            "type": "STRING"
+        },
+        {
+            "name": "LastMonthFirstDate",
+            "description": "Returns last month first date as a String format yyyy-MM-dd",
+            "mainClass": "com.automationanywhere.botcommand.samples.variable.LastMonthFirstDateVariable",
+            "type": "STRING"
+        },
+        {
+            "name": "LastMonthLastDate",
+            "description": "Returns last month last date as a String format yyyy-MM-dd",
+            "mainClass": "com.automationanywhere.botcommand.samples.variable.LastMonthLastDateVariable",
+            "type": "STRING"
+        },
+        {
+            "name": "Now",
+            "description": "Returns now date as a String format yyyy-MM-dd HH:mm:ss",
+            "mainClass": "com.automationanywhere.botcommand.samples.variable.NowVariable",
+            "type": "STRING"
+        },
+        {
+            "name": "Time",
+            "description": "Returns current time as a String format HH:mm:ss",
+            "mainClass": "com.automationanywhere.botcommand.samples.variable.TimeVariable",
+            "type": "STRING"
+        },
+        {
+            "name": "Today",
+            "description": "Returns todays date as a String format yyyy-MM-dd",
+            "mainClass": "com.automationanywhere.botcommand.samples.variable.TodayVariable",
+            "type": "STRING"
+        },
+        {
+            "name": "Tomorrow",
+            "description": "Returns yesterday date as a String format yyyy-MM-dd",
+            "mainClass": "com.automationanywhere.botcommand.samples.variable.TomorrowVariable",
+            "type": "STRING"
+        },
+        {
+            "name": "WeekDay",
+            "description": "Returns week Day as a String format like 'Sunday'",
+            "mainClass": "com.automationanywhere.botcommand.samples.variable.WeekDayVariable",
+            "type": "STRING"
+        },
+        {
+            "name": "Yesterday",
+            "description": "Returns yesterday date as a String format yyyy-MM-dd",
+            "mainClass": "com.automationanywhere.botcommand.samples.variable.YesterdayVariable",
+            "type": "STRING"
         }
     ]
 }

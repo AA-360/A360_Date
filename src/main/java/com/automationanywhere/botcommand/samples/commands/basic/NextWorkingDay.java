@@ -6,7 +6,6 @@ import com.automationanywhere.botcommand.samples.commands.utils.Uteis;
 import com.automationanywhere.commandsdk.annotations.*;
 import com.automationanywhere.commandsdk.annotations.rules.NotEmpty;
 import com.automationanywhere.commandsdk.model.DataType;
-import org.apache.poi.ss.usermodel.DateUtil;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -19,8 +18,8 @@ import static com.automationanywhere.commandsdk.model.DataType.STRING;
 
 @BotCommand
 @CommandPkg(
-        label = "WorkingDays",
-        name = "WorkingDays",
+        label = "NextWorkingDay",
+        name = "NextWorkingDay",
         description = "Get next working day by add/substract a number of days",
         node_label = "Get {{days}} days from {{RadioDateType}} and assign to {{returnTo}} ",
         icon = "pkg.svg",
@@ -30,7 +29,7 @@ import static com.automationanywhere.commandsdk.model.DataType.STRING;
 )
 
 
-public class WorkingDays {
+public class NextWorkingDay {
 
     @Execute
     public StringValue action(
