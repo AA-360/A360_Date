@@ -4,8 +4,8 @@
     "description": "Sample package to demo dictionary return",
     "group": "com.automationanywhere",
     "artifactName": "Date_Uts",
-    "packageVersion": "1.3.9-20230424-095727",
-    "codeVersion": "1.3.9-20230424-095727",
+    "packageVersion": "2.0.1-20230807-103504",
+    "codeVersion": "2.0.1-20230807-103504",
     "author": "",
     "commands": [
         {
@@ -350,6 +350,138 @@
             "description": "Get next working day by add/substract a number of days",
             "nodeLabel": "Get {{days}} days from {{RadioDateType}} and assign to {{returnTo}} ",
             "mainClass": "com.automationanywhere.botcommand.samples.commands.basic.NextWorkingDayCommand",
+            "icon": "pkg.svg",
+            "returnType": "STRING",
+            "returnSubtype": "UNDEFINED",
+            "returnLabel": "",
+            "returnRequired": true,
+            "attributes": [
+                {
+                    "name": "RadioDateType",
+                    "label": "Calculate from:",
+                    "type": "RADIO",
+                    "defaultValue": {
+                        "string": "today",
+                        "type": "STRING"
+                    },
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
+                        }
+                    ],
+                    "options": [
+                        {
+                            "label": "today",
+                            "value": "today"
+                        },
+                        {
+                            "label": "date",
+                            "value": "date",
+                            "attributes": [
+                                {
+                                    "name": "DateInput",
+                                    "label": "Date",
+                                    "type": "TEXT",
+                                    "rules": [
+                                        {
+                                            "name": "NOT_EMPTY"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "FormatInput",
+                                    "label": "Format Input",
+                                    "type": "TEXT",
+                                    "rules": [
+                                        {
+                                            "name": "NOT_EMPTY"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "days",
+                    "label": "Days",
+                    "type": "NUMBER",
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
+                        }
+                    ]
+                },
+                {
+                    "name": "IgnoreSaturday",
+                    "label": "Ignore Saturday:",
+                    "type": "CHECKBOX",
+                    "defaultValue": {
+                        "boolean": true,
+                        "type": "BOOLEAN"
+                    },
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
+                        }
+                    ]
+                },
+                {
+                    "name": "IgnoreSunday",
+                    "label": "Ignore Sunday:",
+                    "type": "CHECKBOX",
+                    "defaultValue": {
+                        "boolean": true,
+                        "type": "BOOLEAN"
+                    },
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
+                        }
+                    ]
+                },
+                {
+                    "name": "use_holidays",
+                    "label": "HolyDays:",
+                    "description": "hollidays to ignore",
+                    "type": "CHECKBOX",
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
+                        }
+                    ],
+                    "attributes": [
+                        {
+                            "name": "Vholidays",
+                            "label": "HolyDays:",
+                            "description": "List of hollidays date format migth be yyyy-MM-dd",
+                            "type": "LIST",
+                            "rules": [
+                                {
+                                    "name": "NOT_EMPTY"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "FormatOutput",
+                    "label": "Format Output",
+                    "type": "TEXT",
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "WorkingDays",
+            "label": "WorkingDays",
+            "description": "Get next working day by add/substract a number of days",
+            "nodeLabel": "Get {{days}} days from {{RadioDateType}} and assign to {{returnTo}} ",
+            "mainClass": "com.automationanywhere.botcommand.samples.commands.basic.WorkingDaysCommand",
             "icon": "pkg.svg",
             "returnType": "STRING",
             "returnSubtype": "UNDEFINED",
